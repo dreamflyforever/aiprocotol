@@ -1,32 +1,10 @@
 #include <stdio.h>
 #include <string.h>
-
-struct output_data {
-	int len;
-	int data[10];
-};
-
-extern char value[][100];
-#define CMD_NUM 200
-int asr_output(char *input, struct output_data *od);
-
-int main()
-{
-	struct output_data od = {0};
-	char *input = "sdf sfdf s fsdf close  sdfsf open  1 air_condition";
-	asr_output(input, &od);
-
-	while (od.len >= 0) {
-		printf("od->data[%d]: %d\n", od.len, od.data[od.len]);
-		od.len--;
-	}
-	return 0;
-}
+#include <aiparse.h>
 
 int asr_output(char *input, struct output_data *od)
 {
 	void *ret;
-	int retval;
 	od->len = 0;
 	int i;
 	for (i = 0; i < CMD_NUM; i++) {
@@ -47,5 +25,5 @@ int asr_output(char *input, struct output_data *od)
 		}
 	}
 	od->len--;
-	return retval;
+	return 0;
 }
