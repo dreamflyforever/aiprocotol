@@ -8,5 +8,5 @@
 #define FILE_NAME_MAX_SIZE 512
 
 int socket_init(int argc, char **argv);
-int socket_send(int fd, char *buffer, int size);
-int socket_recv(int fd, char *buffer, int size);
+int socket_send(int fd, void *buffer, int size);
+int socket_recv(int fd, void *buffer, int size);

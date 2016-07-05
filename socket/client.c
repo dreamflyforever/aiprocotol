@@ -12,11 +12,6 @@ int socket_init(int argc, char **argv)
 	struct sockaddr_in client_addr;
 	int client_socket;
 	struct sockaddr_in server_addr;
-	//if (argc != 2) {
-	//printf("Usage: %s ServerIPAddress\n", argv[0]);
-		//exit(1);
-	//}
-
 	bzero(&client_addr, sizeof(client_addr));
 	client_addr.sin_family = AF_INET;
 	client_addr.sin_addr.s_addr = htons(INADDR_ANY);
@@ -38,8 +33,7 @@ int socket_init(int argc, char **argv)
 	bzero(&server_addr, sizeof(server_addr));
 	server_addr.sin_family = AF_INET;
 
-	//if (inet_aton(argv[1], &server_addr.sin_addr) == 0) {
-	if (inet_aton("127.0.0.1", &server_addr.sin_addr) == 0) {
+	if (inet_aton(argv[1], &server_addr.sin_addr) == 0) {
 		printf("Server IP Address Error!\n");
 		exit(1);
 	}
@@ -56,7 +50,7 @@ int socket_init(int argc, char **argv)
 	return client_socket;
 }
 
-int socket_send(int fd, char *buffer, int size)
+int socket_send(int fd, void *buffer, int size)
 {
 	/*BUFFER_SIZE*/
 	int ret;
@@ -64,7 +58,7 @@ int socket_send(int fd, char *buffer, int size)
 	return ret;
 }
 
-int socket_recv(int fd, char *buffer, int size)
+int socket_recv(int fd, void *buffer, int size)
 {
 	int ret;
 	ret = recv(fd, buffer, size, 0);
@@ -72,6 +66,7 @@ int socket_recv(int fd, char *buffer, int size)
 }
 
 #if 0
+/*test case*/
 int main(int argc, char **argv)
 {
 	int client_socket = socket_init(argc, argv);

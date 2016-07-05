@@ -59,7 +59,7 @@ int socket_close()
 	return 0;
 }
 
-int socket_send(int fd, char *buffer, int size)
+int socket_send(int fd, void *buffer, int size)
 {
 	/*BUFFER_SIZE*/
 	int ret;
@@ -67,7 +67,7 @@ int socket_send(int fd, char *buffer, int size)
 	return ret;
 }
 
-int socket_recv(int fd, char *buffer, int size)
+int socket_recv(int fd, void *buffer, int size)
 {
 	int ret;
 	ret = recv(fd, buffer, size, 0);
@@ -75,6 +75,7 @@ int socket_recv(int fd, char *buffer, int size)
 }
 
 #if 0
+/*test case*/
 int main(int argc, char **argv)
 {
 	int socket = socket_init();
@@ -92,8 +93,8 @@ int main(int argc, char **argv)
 		socket_send(socket, buffer, BUFFER_SIZE);
 		bzero(buffer, BUFFER_SIZE);
 	}
-	//close(socket);
-	//close(server_socket);
+	close(socket);
+	close(server_socket);
 
 	return 0;
 }
