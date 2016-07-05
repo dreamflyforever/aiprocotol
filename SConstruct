@@ -3,10 +3,6 @@ env = Environment(
 	CFLAGS = ['-g', '-fcolor-diagnostics', '-Wall', '-I.', '-I socket']
 )
 
-obj_aiparse = env.Object(['aiparse.c', 'table.c'])
-
-test_aiparse = env.Program("test_aiparse", ['aiparse_test.c', obj_aiparse])
-
 obj_aiprotocol = env.Object(['aiprotocol.c'])
 
 obj_client = env.Object(['socket/client.c'])
