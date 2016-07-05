@@ -12,10 +12,10 @@ int socket_init(int argc, char **argv)
 	struct sockaddr_in client_addr;
 	int client_socket;
 	struct sockaddr_in server_addr;
-	if (argc != 2) {
-		printf("Usage: %s ServerIPAddress\n", argv[0]);
-		exit(1);
-	}
+	//if (argc != 2) {
+	//printf("Usage: %s ServerIPAddress\n", argv[0]);
+		//exit(1);
+	//}
 
 	bzero(&client_addr, sizeof(client_addr));
 	client_addr.sin_family = AF_INET;
@@ -38,7 +38,8 @@ int socket_init(int argc, char **argv)
 	bzero(&server_addr, sizeof(server_addr));
 	server_addr.sin_family = AF_INET;
 
-	if (inet_aton(argv[1], &server_addr.sin_addr) == 0) {
+	//if (inet_aton(argv[1], &server_addr.sin_addr) == 0) {
+	if (inet_aton("127.0.0.1", &server_addr.sin_addr) == 0) {
 		printf("Server IP Address Error!\n");
 		exit(1);
 	}
