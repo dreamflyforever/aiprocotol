@@ -29,18 +29,18 @@ int msg_send(int fd, void *buf, int size)
 			errno);
 		exit(EXIT_FAILURE);
 	}
-	printf("receive: %s\n", buf);
+	printf("receive: %s\n", (char *)buf);
 	return 0;
 }
 
 int msg_recv(int fd, void *buf, int size)
 {
-	if (msgrcv(fd, buf, size, 0, 0) == -1) {
+	if (msgrcv(fd, buf, size, 0, MSG_NOERROR | IPC_NOWAIT) == -1) {
 		fprintf(stderr, "msgrcv failed with errno: %d\n",
 			errno);
 		exit(EXIT_FAILURE);
 	}
-	printf("receive: %s\n", buf);
+	printf("receive: %s\n", (char *)buf);
 	return 0;
 }
 
